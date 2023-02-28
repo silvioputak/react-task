@@ -1,12 +1,21 @@
 import { useState } from 'react'
-import './App.css'
+import Header from './components/Header'
+import MultiStepForm from './components/MultiStepForm'
+import Home from './components/Home'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showModal, setShowmModal] = useState(false)
 
+  const handleClick = () => {
+    setShowmModal(!showModal)
+  }
   return (
     <div >
-      <h1 className="text-3xl font-bold underline text-center">Hello world!</h1> 
+      <Header />
+      <div className='flex flex-col items-center justify-center p-[10px] gap-[30px] w-full h-[947px]' >
+        {showModal ? <MultiStepForm handleModal={handleClick}  /> : <Home handleModal={handleClick}/>}
+      </div>
+      
     </div>
   )
 }

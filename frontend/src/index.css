@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base{
+  html{
+    font-family: 'Satoshi', sans-serif;
+  }
+
+  .button{
+    @apply w-[100px] h-[35px] text-[18px] leading-[140%] text-[#969696]
+    border border-solid border-[rgba(0,0,0,0.15)] py-[5px] px-[15px];
+  }
+}
+
