@@ -16,7 +16,7 @@ const MultiStep4 = (props) => {
             <div className="border border-solid border-[rgba(0,0,0,0.15)] rounded-[5px] w-full bg-gray my-3 px-3 py-1">
                 <div className='flex flex-row w-full justify-between mb-1'>
                     <h1>Model Vozila</h1>
-                    <div className='flex flex-row gap-2 cursor-pointer' onClick={() => back(2)}>
+                    <div className='flex flex-row gap-2 cursor-pointer' onClick={() => back(3)}>
                         <p>Uredi</p>
                         <img src={pic}/>
                     </div>
@@ -59,8 +59,8 @@ const MultiStep4 = (props) => {
             </div>
             <div className='border border-solid border-[rgba(0,0,0,0.15)] rounded-[5px] w-full bg-gray my-3 px-3 py-1'>
                 <div className='flex flex-row w-full justify-between mb-1'>
-                    <h1>Model Vozila</h1>
-                    <div className='flex flex-row gap-2 cursor-pointer' onClick={() => back(2)}>
+                    <h1>Kontakt Podaci</h1>
+                    <div className='flex flex-row gap-2 cursor-pointer' onClick={() => back(1)}>
                         <p>Uredi</p>
                         <img src={pic}/>
                     </div>
