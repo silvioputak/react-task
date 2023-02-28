@@ -35,7 +35,7 @@ const MultiStep1 = (props) => {
         <div className='w-full flex justify-end'>
             <button className='button mr-[5px]' onClick={() => back(1)}>Odustani</button>
             <button
-            className='button bg-[#004289] text-white hover:bg-[#003142]'
+            className={toggle ? "button bg-[#004289] hover:bg-[#003142] text-[#fff]" : "button bg-[#eee] text-[#fff] " }
             onClick={() => { toggle ? next() : notify()}}> Dalje
             </button>
             
