@@ -11,5 +11,19 @@
     @apply w-[100px] h-[35px] text-[18px] leading-[140%] text-[#969696]
     border border-solid border-[rgba(0,0,0,0.15)] py-[5px] px-[15px];
   }
+
+  .button:hover{
+    @apply bg-[#f2f2f2];
+  }
+
+  .label{
+    @apply block mb-2 text-sm font-medium;
+  }
+
+  .text-input{
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-[100%] p-2.5 
+  }
+
+
 }
 

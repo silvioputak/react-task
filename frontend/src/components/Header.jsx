@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className='flex flex-row items-center py-[15px] px-[50px] gap-[50px] w-full h-[60px] bg-[#004289]'>
         <div>
-            <img src={pic} alt="hehehhe" />
+            <img src={pic} />
         </div>
         <div className='flex flex-row justify-between items-center p-0 gap-[50px] w-full h-[27px]'>
             <h1 className='w-[288px] h-[27px] font-bold leading-[150%] text-white cursor-pointer'>KONFIGURATOR SERVISA</h1>

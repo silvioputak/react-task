@@ -1,23 +1,22 @@
 import React from 'react'
+import pic from '../../assets/success.svg'
 
 const MultiStepFinished = (props) => {
-  const {data, handleChange, next, back} = props
+  const {back} = props
   return (
-    <div>
-        <h1>Konfigurator Servisa</h1>
-        <div>Ikona</div>
+    <div className='flex flex-col items-start justify-center p-[10px] gap-[30px]  border border-solid border-[rgba(0,0,0,0.15)] rounded-[5px] shadow-md'>
+        <h1 className="text-bold text-[20px] text-[#1C1C1C]">Konfigurator Servisa</h1>
+        <div className='flex flex-col items-center jusity-center w-full'>
+          <img src={pic} alt='Sucsess'/>
 
-        <h3>Vaša prijava je uspješno poslana</h3>
-        <p>Vaša prijava je uspješno poslana i zaprimljena. Kontaktirat ćemo vas u najkraćem mogućem roku. Hvala Vam!</p>
-
-        <div className='flex flex-row'>
-            <button className='button' onClick={next}>Zatvori</button>
+          <h3 className="text-bold text-[20px] text-[#1C1C1C]">Vaša prijava je uspješno poslana</h3>
+          <p className="text-[#1C1C1C]; text-[12px]">Vaša prijava je uspješno poslana i zaprimljena. <br /> Kontaktirat ćemo vas u najkraćem mogućem roku. Hvala Vam!</p>
         </div>
-
-        <div className='flex flex-row'>
-            <button className='button' onClick={next}>Dalje</button>
-            <button className='button ml-[5px]' onClick={back}>Nazad</button>
+        <div className='w-full flex justify-center'>
+              <button className='button bg-[#004289] text-white hover:bg-[#003142]' onClick={back}>Zatvori</button>
         </div>
+        
+
     </div>
   )
 }

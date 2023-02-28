@@ -5,7 +5,7 @@ import Step3 from './steps/MultiStep3'
 import MultiStep4 from './steps/MultiStep4'
 import MultiStepFinished from './steps/MultiStepFinished'
 
-const MultiStepForm = ({handleModal}) => {
+const MultiStepForm = ({handleModal,toast}) => {
     const [currentStep, setCurrentStep] = useState(1)
     const [formData, setFormData] = useState({
         ime_auta:[
@@ -78,21 +78,25 @@ const MultiStepForm = ({handleModal}) => {
     }
 
     const handleCoupon = () => {
-        debugger;
-        if(formData.kupon === 'TOKIC123'){
-            setFormData({...formData, ['popust']: true})
-            if(formData.ukupno > 0){
-                const ukupno = formData.ukupno * (0.7)
-                setFormData({...formData, ['ukupno']: ukupno})
-            } 
+        if(formData.kupon === 'TOKIC123' && formData.popust === false && formData.ukupno > 0){
+            debugger;
+            const ukupno = formData.ukupno * (0.7)
+            setFormData({...formData, ['popust']: true, ['ukupno']: ukupno})
+            toast("Uspješno si odabrao kupon!.", {autoClose: 1000});
+            
         }
+        else{
+            toast("Kupon je istekao!", {autoClose: 1000});
+        }
+        
     }
     const next = () => {
         /* debugger; */
         setCurrentStep(currentStep + 1)
     }
-    const back = () => {
-        setCurrentStep(currentStep - 1)
+    const back = (steps) => {
+        steps ? setCurrentStep(currentStep - steps) : setCurrentStep(currentStep - 1)
+        
     }
 
     switch(currentStep){
@@ -105,7 +109,7 @@ const MultiStepForm = ({handleModal}) => {
         case 4:
             return <MultiStep4 data={formData} handleChange={handleChange} next={next} back={back} />
         default:
-            return <MultiStepFinished/>
+            return <MultiStepFinished back={handleModal}/>
     }
 }
 

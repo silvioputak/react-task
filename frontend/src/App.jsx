@@ -2,6 +2,9 @@ import { useState } from 'react'
 import Header from './components/Header'
 import MultiStepForm from './components/MultiStepForm'
 import Home from './components/Home'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   const [showModal, setShowmModal] = useState(false)
@@ -13,8 +16,9 @@ function App() {
     <div >
       <Header />
       <div className='flex flex-col items-center justify-center p-[10px] gap-[30px] w-full h-[947px]' >
-        {showModal ? <MultiStepForm handleModal={handleClick}  /> : <Home handleModal={handleClick}/>}
+        {showModal ? <MultiStepForm handleModal={handleClick} toast={toast}  /> : <Home handleModal={handleClick}/>}
       </div>
+      <ToastContainer />
       
     </div>
   )
