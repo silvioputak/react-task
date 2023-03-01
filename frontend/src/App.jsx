@@ -15,7 +15,7 @@ function App() {
   return (
     <div >
       <Header />
-      <div className='flex flex-col items-center justify-center p-[10px] gap-[30px] w-full h-[947px]' >
+      <div className={'flex flex-col items-center justify-center p-[10px] gap-[30px] w-full h-[95vh]' + (showModal ? ' bg-[rgba(0,0,0,0.5);]' : null)}>
         {showModal ? <MultiStepForm handleModal={handleClick} toast={toast}  /> : <Home handleModal={handleClick}/>}
       </div>
       <ToastContainer />
