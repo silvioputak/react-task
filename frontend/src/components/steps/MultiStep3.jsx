@@ -8,24 +8,41 @@ const MultiStep3 = (props) => {
     const {data, handleChange, next, back} = props
      //Validation state and function
      const [toggle, setToggle] = useState(false)
+     const [imePrezime, setImePrezime] = useState(false)
+     const [email, setEmail] = useState(false)
+     const [telefon, setTelefon] = useState(false)
      
      const handleValidation = () => {
-        
-          if(!data.ime_prezime) {
-            toast("Ispuni ime i prezime!", {autoClose: 1000});
-           }
-           else if (!data.email ) {
-            toast("Ispuni email podatke!", {autoClose: 1000});
-           }
-           else if(!data.telefon){
-            toast("Ispuni podatke za telefon!", {autoClose: 1000});
-           }
-           else{
-            setToggle(true)
-           } 
-     }  
+        if(data.ime_prezime && data.email && data.telefon){
+          setToggle(true)
+        }
+    }  
 
-     useEffect(() => {
+    const notify = () => {
+      if(!data.ime_prezime){
+        toast("Molim te unesi ime i prezime.", {autoClose: 1000});
+        setImePrezime(true)
+      }
+      else{
+        setImePrezime(false)
+      }
+      if(!data.email){
+        toast("Molim te unesi email.", {autoClose: 1000});
+        setEmail(true)
+      }
+      else{
+        setEmail(false)
+      }
+      if(!data.telefon){
+        toast("Molim te unesi broj telefona.", {autoClose: 1000});
+        setTelefon(true)
+      }
+      else{
+        setTelefon(false)
+      }
+    };
+
+    useEffect(() => {
       //Runs on every render
       handleValidation()
     });
@@ -43,26 +60,22 @@ const MultiStep3 = (props) => {
             <div className="h-[74px]">
               <label className='text-[14px] leading-[140%] text-[#585757] px-[5px]' htmlFor="ime">Ime i Prezime</label>
               <input className="flex flex-row items-start p-[5px] pl-[5px] w-[540px] h-[34px] bg-[rgba(0,0,0,0.04)] border border solid border-[rbga(0,0,0,0.004)] rounded-[3px]" type="text" id="ime" name="ime_prezime" value={data.ime_prezime} onChange={handleChange}></input>
-              <p className="hidden">Error</p>
+              <p className={!imePrezime ? "hidden" : " flex justify-center text-[14px]"}>Ispuni ovo polje</p>
             </div>
             <div className="h-[74px]">
               <label className='text-[14px] leading-[140%] text-[#585757] px-[5px]' htmlFor="email">Email</label>
               <input className="flex flex-row items-start p-[5px] pl-[5px] w-[540px] h-[34px] bg-[rgba(0,0,0,0.04)] border border solid border-[rbga(0,0,0,0.004)] rounded-[3px]" type="text" id="email" name="email" value={data.email} onChange={handleChange}></input>
+              <p className={!email ? "hidden" : "flex justify-center text-[14px]"}>Ispuni ovo polje</p>
             </div>
             <div className="h-[74px]">
             <label className='text-[14px] leading-[140%] text-[#585757] px-[5px]' htmlFor="telefon">Telefon</label>
               <input className="flex flex-row items-start p-[5px] pl-[5px] w-[540px] h-[34px] bg-[rgba(0,0,0,0.04)] border border solid border-[rbga(0,0,0,0.004)] rounded-[3px]" type="text" id="telefon" name="telefon" value={data.telefon} onChange={handleChange}></input>
-              <p className="hidden">Error</p>
+              <p className={!telefon ? "hidden" : "flex justify-center text-[14px]"}>Ispuni ovo polje</p>
             </div>
             <div className="h-[74px]">
               <label className='text-[14px] leading-[140%] text-[#585757] px-[5px]' htmlFor="napomena">Napomena</label>
               <textarea className="flex flex-row items-start p-[5px] pl-[5px] w-[540px] h-[106px] bg-[rgba(0,0,0,0.04)] border border solid border-[rbga(0,0,0,0.004)] rounded-[3px]" type="text" id="napomena" name="napomena" value={data.napomena} onChange={handleChange}></textarea>
-              <p className="hidden">Error</p>
             </div>
-              
-              
-              
-              
           </div>
         </div>
         
@@ -70,7 +83,7 @@ const MultiStep3 = (props) => {
             <button className='flex flex-row items-center py-[5px] px-[15px] gap-[10px] w-[80px] h-[35px] border border-solid border-[#585757] rounded-[3px] text-[18px] leading-[180%] text-[#1C1C1C]' onClick={() => back(1)}>Nazad</button>
             <button
             className={"flex flex-row items-center py-[5px] px-[15px] gap-[5px] w-[70px] h-[35px]  rounded-[3px]  text-[18px] leading-[140%]" + (toggle ?  " bg-[#004289] text-[#fff]" : " bg-[rgba(0,0,0,0.15)] text-[#969696]") }
-            onClick={() => { toggle ? next() : handleValidation()}}> Dalje
+            onClick={() => { toggle ? next() : notify()}}> Dalje
             </button>
         </div>
 
