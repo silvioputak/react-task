@@ -6,20 +6,21 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
+//Main component
 function App() {
-  const [showModal, setShowmModal] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const handleClick = () => {
-    setShowmModal(!showModal)
+    setShowModal(!showModal)
   }
   return (
-    <div >
+    <div>
       <Header />
       <div className={'flex flex-col items-center justify-center p-[10px] gap-[30px] w-full h-[95vh]' + (showModal ? ' bg-[rgba(0,0,0,0.5);]' : null)}>
         {showModal ? <MultiStepForm handleModal={handleClick} toast={toast}  /> : <Home handleModal={handleClick}/>}
       </div>
       <ToastContainer />
-      
     </div>
   )
 }

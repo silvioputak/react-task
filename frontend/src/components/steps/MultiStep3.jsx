@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import x_button from '../../assets/x_button.svg'
+import Configurator from './Configurator'
 
 
 const MultiStep3 = (props) => {
-    const {data, handleChange, next, back} = props
+    const {data, handleChange, next, back,quit} = props
      //Validation state and function
      const [toggle, setToggle] = useState(false)
      const [imePrezime, setImePrezime] = useState(false)
@@ -17,7 +17,7 @@ const MultiStep3 = (props) => {
           setToggle(true)
         }
     }  
-
+    //Input validation notification
     const notify = () => {
       if(!data.ime_prezime){
         toast("Molim te unesi ime i prezime.", {autoClose: 1000});
@@ -50,10 +50,7 @@ const MultiStep3 = (props) => {
 
   return (
     <div className='flex flex-col items-start justify-center p-0 w-[600px] h-[567px] border border-solid border-[rgba(0,0,0,0.15)] bg-white rounded-[5px] shadow-md'>
-        <div id="header" className="flex flex-row justify-between py-[20px] pr-[20px] pl-[30px] w-[600px] h-[74px]">
-          <h1 className="text-[24px] text-[#1C1C1C] font-medium">Konfigurator Servisa</h1>
-          <img src={x_button} alt="" />
-        </div>
+        <Configurator quit={quit}/>
         <div id="content" className="flex flex-col items-start px-[30px] pt-0 pb-[15px] gap-[20px] w-[600px] h-[428px]">
           <p className="text-[#1C1C1C]; text-[18px]"><span className="text-[#004289] text-[16px]">Korak 3.</span> Vaši podaci</p>
           <div className='flex flex-col items-start p-0 w-[540px] h-[368px] '>

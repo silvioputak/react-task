@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import pic from '../../assets/apply.svg'
-import x_button from '../../assets/x_button.svg'
+import Configurator from './Configurator'
 
 const MultiStep2 = (props) => {
-    const {data, handleChange, handleCheckboxChange, handleCoupon, next, back} = props
+    const {data, handleChange, handleCheckboxChange, handleCoupon, next, back, quit} = props
     const [kupon, setKupon] = useState(false)
      //Validation state and function
     const [toggle, setToggle] = useState(false)
@@ -22,12 +22,10 @@ const MultiStep2 = (props) => {
         //Runs on every render
         handleValidation()
       });
+
   return (
     <div className='flex flex-col items-start justify-center p-0 w-[600px] h-[395px]  border border-solid border-[rgba(0,0,0,0.15)] bg-white rounded-[5px] shadow-md;'>
-        <div id="header" className="flex flex-row justify-between py-[20px] pr-[20px] pl-[30px] w-[600px] h-[74px]">
-          <h1 className="text-[24px] text-[#1C1C1C] font-medium">Konfigurator Servisa</h1>
-          <img src={x_button} alt="" />
-        </div>
+        <Configurator quit={quit}/>
         <div id="content" className="flex flex-col items-start px-[30px] pt-0 pb-[15px] gap-[20px] w-[600px] h-[256px]">
             <p className="text-[#1C1C1C]; text-[18px]"><span  className="text-[#004289] text-[16px]">Korak 2.</span> Odaberite jednu ili više usluga</p>
             <div className='flex flex-col flex-wrap items-start pt-[10px]  w-[540px] h-[112px] bg-[#FEFEFE] '>

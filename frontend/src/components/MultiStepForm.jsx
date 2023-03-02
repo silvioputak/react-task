@@ -5,8 +5,11 @@ import Step3 from './steps/MultiStep3'
 import MultiStep4 from './steps/MultiStep4'
 import MultiStepFinished from './steps/MultiStepFinished'
 
+
 const MultiStepForm = ({handleModal,toast}) => {
+    //State for current step
     const [currentStep, setCurrentStep] = useState(1)
+    //State for form data
     const [formData, setFormData] = useState({
         ime_auta:[
             {id: 1, text: 'Volvo', checked: false},
@@ -35,17 +38,18 @@ const MultiStepForm = ({handleModal,toast}) => {
         napomena: '',
         ukupno: 0,
     })
-
+    // Function which handles input change
     const handleChange = (e) => {
         /* debugger; */
         setFormData({...formData, [e.target.name]: e.target.value})
     }
-
+    // Function which handles checkbox change
     const handleCheckboxChange = (e) => {
         /* debugger; */
         /* setFormData({...formData, [e.target.name]: e.target.checked}) */
         const id = e.target.id;
         const attrValue = e.target.checked ? true : false;
+        //Mapping through array and changing price value of checked checkbox
         const newArray = formData.usluge.map((item) => {
             if(item.id == id){
                 item.checked = attrValue
@@ -57,12 +61,13 @@ const MultiStepForm = ({handleModal,toast}) => {
         setFormData({...formData, ['usluge']: newArray})
 
     }
-
+    // Function which handles radio button change
     const handleRadioButtonChange = (e) => {
         /* debugger; */
         /* setFormData({...formData, [e.target.name]: e.target.checked}) */
         const id = e.target.id;
         const attrValue = e.target.checked ? true : false;
+        //Reseting state of unchekd radio buttons
         const newArray = formData.ime_auta.map((item) => {
             if(item.id == id){
                 item.checked = true
@@ -76,8 +81,9 @@ const MultiStepForm = ({handleModal,toast}) => {
         setFormData({...formData, ['ime_auta']: newArray})
 
     }
-
+    // Function which handles coupon if applied
     const handleCoupon = () => {
+        //Checking if coupon is valid and if it is not already applied
         if(formData.kupon === 'TOKIC123' && formData.popust === false && formData.ukupno > 0){
             debugger;
             const ukupno = formData.ukupno * (0.7)
@@ -90,26 +96,31 @@ const MultiStepForm = ({handleModal,toast}) => {
         }
         
     }
+    // Function which handles next step
     const next = () => {
         /* debugger; */
         setCurrentStep(currentStep + 1)
     }
+    // Function which handles previous step
     const back = (steps) => {
-        steps ? setCurrentStep(currentStep - steps) : setCurrentStep(currentStep - 1)
+        debugger;
+        setCurrentStep(currentStep - steps)
         
     }
 
     switch(currentStep){
         case 1:
-            return <Step1 data={formData} handleChange={handleRadioButtonChange} next={next} back={handleModal} />
+            return (
+            <Step1 data={formData} handleChange={handleRadioButtonChange} next={next} quit={handleModal}/>
+            )
         case 2:
-            return <Step2 data={formData} handleChange={handleChange} handleCheckboxChange={handleCheckboxChange} handleCoupon={handleCoupon} next={next} back={back} />
+            return <Step2 data={formData} handleChange={handleChange} handleCheckboxChange={handleCheckboxChange} handleCoupon={handleCoupon} next={next} back={back} quit={handleModal}/>
         case 3:
-            return <Step3 data={formData} handleChange={handleChange} next={next} back={back} />
+            return <Step3 data={formData} handleChange={handleChange} next={next} back={back} quit={handleModal} />
         case 4:
-            return <MultiStep4 data={formData} handleChange={handleChange} next={next} back={back} />
+            return <MultiStep4 data={formData} handleChange={handleChange} next={next} back={back} quit={handleModal}/>
         default:
-            return <MultiStepFinished back={handleModal}/>
+            return <MultiStepFinished quit={handleModal}/>
     }
 }
 
